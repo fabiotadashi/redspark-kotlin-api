@@ -1,5 +1,6 @@
 package io.redspark.games.entity
 
+import io.redspark.games.dto.CreateGameDTO
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 import java.time.LocalDate
@@ -8,6 +9,11 @@ import java.time.LocalDate
 data class GameEntity(
         @Id
         val id: String? = null,
-        val title: String,
-        val releaseDate: LocalDate
-)
+        var title: String,
+        var releaseDate: LocalDate
+) {
+        constructor(createGameDTO: CreateGameDTO) : this(
+                title = createGameDTO.title,
+                releaseDate = createGameDTO.releaseDate
+        )
+}
